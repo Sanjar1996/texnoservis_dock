@@ -1,0 +1,57 @@
+  version: '2'
+
+  services:
+    texnoservisdb_prod:
+      container_name: texnoservisdb_prod
+      restart: always  
+      image: postgres:12.2
+      environment:
+        POSTGRES_DB: db_texnoservis_prod
+        POSTGRES_USER: texnoservisuser_prod
+        POSTGRES_PASSWORD: texnoservispass_prod
+      networks:
+        - texnoservis-network
+      volumes:
+          - texnoservisdata:/var/lib/postgresql/texnoservisdata/
+      
+    texnoservisweb_prod:
+      container_name: texnoservisweb_prod
+      restart: always  
+      build:
+        context: .
+        dockerfile: Dockerfile.prod
+      command: gunicorn config.wsgi:application --bind 0.0.0.0:3938
+      volumes:
+        - static_volume_texnoservis:/home/app/web/static
+        - media_volume_texnoservis:/home/app/web/media
+      networks:
+        - texnoservis-network
+      depends_on: 
+        - texnoservisdb_prod
+      ports:
+        - "3938:3938"
+      env_file: 
+        - ./.env.prod
+
+    texnoservisnginx:
+      container_name: texnoservis-nginx
+      restart: always
+      build: ./nginx
+      volumes:
+        - static_volume_texnoservis:/home/app/web/static
+        - media_volume_texnoservis:/home/app/web/media
+      ports:
+        - "9976:9976"
+      networks:
+        - texnoservis-network
+      depends_on:
+        - texnoservisweb_prod
+        
+  volumes:
+    texnoservisdata:
+    static_volume_texnoservis:
+    media_volume_texnoservis:
+
+  networks:
+    texnoservis-network:
+      driver: bridge

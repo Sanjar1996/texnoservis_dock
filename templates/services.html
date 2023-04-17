@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Xizmatlar</h2>
+          <ol>
+            <li><a href="index.html">Bosh sahifa</a></li>
+            <li>Xizmatlar</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="row">
+        <section style="align-items: center;margin: 0; padding: 0;">
+        <center><h3>Biz yaratgan veb-saytlar</h3></center>
+        </section>
+        {% for data in servis %}
+          <div class="col-md-6  {% if forloop.first %} mt-4 mt-md-0 {% endif %}">
+            <div class="icon-box">
+              <i class="{{ data.icon }}"></i>
+              <h4><a href="{{ data.link }}">{{ data.title }}</a></h4>
+              <p>{{ data.sub_title }}</p>
+            </div>
+          </div>
+        {% endfor %}
+
+      </div>
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Xizmatlar</h2>
+          <p>Biz ko'rsatadigan xizmat turlari</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              <li class="nav-item">
+                <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Veb saytlarga yangiliklar qo'shish</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Kompyuter va printerlarga texnik xizmat ko'rsatish</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Telegram kanalini yuritib borish</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Xo'jaliklarga veb saytlar haqida ma'lumot berish</a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+              <div class="tab-pane active show" id="tab-1">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Veb saytlarga yangiliklar qo'shish</h3>
+                    <p class="fst-italic">Xo'jaliklarning rasmiy veb saytlariga yangiliklar qo'shish va ularni texnik qo'llab quvatlash</p>
+                    <p>Xo'jaliklarnig rasmiy vebsaytlariga hozirgi kunda bo'lib turgan yangiliklar, e'lonlar, tadbirlardan lavhalar qo'yib boriladi. Veb saytlarda muammolar kelib chiqsa bartaraf etiladi.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static 'assets/img/features-1.png' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-2">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Kompyuter va printerlarga texnik xizmat ko'rsatish.</h3>
+                    <p class="fst-italic">O'rmon xo'jaligi davlat qo'mitasi va O'rmon xo'jaligi ilmiy tadqiqot inistituti hududidagi kompyuterlar va printerlarga texnik xizmat ko'rsatish.</p>
+                    <p>Kompyuterlarning tarmoqda xosil bo'lgan muammolarni bartaraf etish, printerlarni to'g'irlash va kompyuterlarga ulab berish, kompyuterlarga sistema bosish xizmatlari qilinadi.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static 'assets/img/features-2.png' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-3">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Telegram ijtimoiy tarmog'idagi kanalni yuritish.</h3>
+                    <p class="fst-italic">O'rmon xo'jaligi davlat qo'mitasining telegramdagi kanalini yuritish.</p>
+                    <p>O'rmon xo'jaligi davlat qo'mitasi va boshqa xo'jaliklarda bo'layotgan yangiliklar va tadbirlarni ijtimoiy tarmoq orqali yoritib boriladi. </p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static 'assets/img/features-3.png' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="tab-4">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3>Xo'jaliklarga veb saytlar haqida ma'lumot berish.</h3>
+                    <p class="fst-italic">"O'rmontexnoservis" davlat unitar korxonasi tomonidan yaratilgan veb saytlar haqida qo'shimcha ma'lumotlar berish.</p>
+                    <p>Xo'jalik xodimlari va fuqarolarga veb saytlarning ishlash prinsipi, ulardan qanday foydalanish, ro'yxatdan o'tish, auktsionlarda qatnashish va boshqa savollarga batafsil javob beriladi.</p>
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{% static 'assets/img/features-4.png' %}" alt="" class="img-fluid">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Features Section -->
+
+  </main><!-- End #main -->
+{% endblock %}
